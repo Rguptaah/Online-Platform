@@ -124,7 +124,7 @@ if (isset($_GET['task'])) {
 		case "bulk_import":
 			extract($_POST);
 			//print_r($_POST);
-			$res = csvimport($table, $pkey);
+			$res = csv_import($table, $pkey);
 			echo "<script> window.location='bulk_update.php?msg=" . $res['msg'] . "' </script>";
 			break;
 
@@ -132,9 +132,9 @@ if (isset($_GET['task'])) {
 			if ($_SESSION['user_type'] == 'ADMIN') {
 				$table = $_REQUEST['table'];
 				if (isset($_REQUEST['col_name'])) {
-					csvexport($table, "id, name, stock, rate");
+					csv_export($table, "id, name, stock, rate");
 				} else {
-					csvexport($table);
+					csv_export($table);
 				}
 			}
 			break;
@@ -288,7 +288,7 @@ if (isset($_GET['task'])) {
 			if ($user_email != '') {
 				$info = "<table rules='1' align='center' width='70%' cellpadding='5'>";
 				foreach ($_POST as $key => $value) {
-					$info = $info . "<tr><td>" . addspace($key) . "</td><td>" . $value . "</td></tr>";
+					$info = $info . "<tr><td>" . add_space($key) . "</td><td>" . $value . "</td></tr>";
 				}
 				$info = $info . "</table>";
 				$email = $ms . "<hr>" . $info;
